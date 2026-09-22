@@ -5,51 +5,69 @@ from azure.storage.blob import BlobServiceClient
 from io import BytesIO
 import os
 from dotenv import load_dotenv
+import snowflake.connector
+from snowflake.connector.pandas_tools import write_pandas
 
-# Load environment variables from .env file
+# Load environment variables
 load_dotenv()
 
 def fetch_products(url):
-    """Fetches product data from the FakeStore API."""
     print("Fetching data from API...")
     response = requests.get(url)
     response.raise_for_status()
     return response.json()
 
 def upload_to_azure(df, container_name, blob_name):
-    """Uploads a DataFrame as a Parquet file directly to Azure Data Lake."""
     print(f"Uploading data to Azure Data Lake as {blob_name}...")
-    
-    # 1. Convert DataFrame to Parquet in memory (no local files cluttering your computer!)
     buffer = BytesIO()
     df.to_parquet(buffer, engine='pyarrow', index=False)
-    buffer.seek(0) # Reset buffer position to the beginning
-    
-    # 2. Connect to Azure using your connection string
+    buffer.seek(0)
     connection_string = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
     blob_service_client = BlobServiceClient.from_connection_string(connection_string)
-    
-    # 3. Upload the file
     blob_client = blob_service_client.get_blob_client(container=container_name, blob=blob_name)
     blob_client.upload_blob(buffer, overwrite=True)
-    
     print("Data successfully uploaded to Azure!")
+
+def load_to_snowflake(df, table_name):
+    print(f"Loading data into Snowflake table: {table_name}...")
+    
+    # Connect to Snowflake
+    conn = snowflake.connector.connect(
+        user=os.getenv("SNOWFLAKE_USER"),
+        password=os.getenv("SNOWFLAKE_PASSWORD"),
+        account=os.getenv("SNOWFLAKE_ACCOUNT"),
+        database=os.getenv("SNOWFLAKE_DATABASE"),
+        schema=os.getenv("SNOWFLAKE_SCHEMA"),
+        warehouse="COMPUTE_WH" # Default warehouse in Snowflake trials
+    )
+    
+    # Write DataFrame to Snowflake
+    # write_pandas requires column names in UPPERCASE
+    df.columns = df.columns.str.upper()
+    #write_pandas(conn, df, table_name.upper())
+    write_pandas(conn, df, table_name.upper(), auto_create_table=True)
+    
+    conn.close()
+    print("Data successfully loaded to Snowflake!")
 
 def main():
     api_url = "https://fakestoreapi.com/products"
     container_name = "raw-data"
+    table_name = "products_raw"
     
-    # Create a filename with today's date
     today_date = datetime.now().strftime("%Y-%m-%d")
     blob_name = f"products_raw_{today_date}.parquet"
     
     try:
-        # Fetch and convert
         data = fetch_products(api_url)
         df = pd.DataFrame(data)
         
-        # Upload to Cloud
+        # 1. Upload to Azure Data Lake (Backup/Raw Zone)
         upload_to_azure(df, container_name, blob_name)
+        
+        # 2. Load to Snowflake (Data Warehouse)
+        load_to_snowflake(df, table_name)
+        
         print("Pipeline execution completed successfully.")
     except Exception as e:
         print(f"Pipeline failed: {e}")
