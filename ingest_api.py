@@ -40,6 +40,11 @@ def load_to_snowflake(df, table_name):
         schema=os.getenv("SNOWFLAKE_SCHEMA"),
         warehouse="COMPUTE_WH" # Default warehouse in Snowflake trials
     )
+
+    # ADD THIS LINE: Clear old data so we don't create duplicates on re-runs
+    cursor = conn.cursor()
+    cursor.execute(f"TRUNCATE TABLE IF EXISTS {table_name.upper()}")
+    cursor.close()
     
     # Write DataFrame to Snowflake
     # write_pandas requires column names in UPPERCASE
