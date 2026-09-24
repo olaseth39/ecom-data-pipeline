@@ -1,0 +1,89 @@
+[0m21:09:54.278153 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001BD9AD04880>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001BD9CDBB340>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001BD9CDBBE20>]}
+
+
+============================== 21:09:54.306470 | 29523677-1f41-4f7e-936a-4f0a561d6130 ==============================
+[0m21:09:54.306470 [info ] [MainThread]: Running with dbt=1.12.5
+[0m21:09:54.309402 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'maximum_seed_size_mib': '1', 'target_path': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'profiles_dir': 'C:\\Users\\Snapnet User\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'use_colors': 'True', 'hints_enabled': 'True', 'invocation_command': 'dbt init ecommerce_dbt', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'log_path': 'logs'}
+[0m21:09:54.385241 [info ] [MainThread]: Creating dbt configuration folder at C:\Users\Snapnet User\.dbt
+[0m21:09:54.392063 [debug] [MainThread]: Starter project path: C:\Users\Snapnet User\goal-writing-assistant\.venv\lib\site-packages\dbt\include\starter_project
+[0m21:09:54.434590 [info ] [MainThread]: Setting up your profile.
+[0m21:10:46.733650 [debug] [MainThread]: Snowflake adapter: Setting snowflake.connector to ERROR (file logging only)
+[0m21:10:46.735590 [debug] [MainThread]: Snowflake adapter: Setting botocore to ERROR (file logging only)
+[0m21:10:46.737544 [debug] [MainThread]: Snowflake adapter: Setting boto3 to ERROR (file logging only)
+[0m21:20:03.723460 [info ] [MainThread]: Profile ecommerce_dbt written to C:\Users\Snapnet User\.dbt\profiles.yml using target's profile_template.yml and your supplied values.
+[0m21:20:03.743514 [info ] [MainThread]: Running dbt debug to validate the project...
+[0m21:20:03.841338 [info ] [MainThread]: dbt version: 1.12.5
+[0m21:20:03.927351 [info ] [MainThread]: python version: 3.10.11
+[0m21:20:04.032494 [info ] [MainThread]: python path: C:\Users\Snapnet User\goal-writing-assistant\.venv\Scripts\python.exe
+[0m21:20:04.094014 [info ] [MainThread]: os info: Windows-10-10.0.21996-SP0
+[0m21:20:04.367279 [info ] [MainThread]: Using profiles dir at C:\Users\Snapnet User\.dbt
+[0m21:20:04.371188 [info ] [MainThread]: Using profiles.yml file at C:\Users\Snapnet User\.dbt\profiles.yml
+[0m21:20:04.374120 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\Snapnet User\DataEngProjSelf\ecommerce\ecommerce_dbt\dbt_project.yml
+[0m21:20:04.389742 [info ] [MainThread]: adapter type: snowflake
+[0m21:20:04.392671 [info ] [MainThread]: adapter version: 1.12.1
+[0m21:20:05.167981 [info ] [MainThread]: Configuration:
+[0m21:20:05.172862 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m21:20:05.183628 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m21:20:05.190443 [info ] [MainThread]: Required dependencies:
+[0m21:20:05.192391 [debug] [MainThread]: Executing "git --help"
+[0m21:20:05.540634 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Reset current HEAD to the specified state\n   switch     Switch branches\n   tag        Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m21:20:05.542588 [debug] [MainThread]: STDERR: "b''"
+[0m21:20:05.544540 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m21:20:05.559190 [info ] [MainThread]: Connection:
+[0m21:20:05.564074 [info ] [MainThread]:   account: hhuqmtr-px01702
+[0m21:20:05.570907 [info ] [MainThread]:   user: olaseth
+[0m21:20:05.580689 [info ] [MainThread]:   database: ecom_db
+[0m21:20:05.589460 [info ] [MainThread]:   warehouse: ecom_db
+[0m21:20:05.594341 [info ] [MainThread]:   role: ACCOUNTADMIN
+[0m21:20:05.600201 [info ] [MainThread]:   schema: ANALYTICS
+[0m21:20:05.609964 [info ] [MainThread]:   authenticator: None
+[0m21:20:05.633974 [info ] [MainThread]:   oauth_client_id: None
+[0m21:20:05.658498 [info ] [MainThread]:   query_tag: None
+[0m21:20:05.667286 [info ] [MainThread]:   client_session_keep_alive: False
+[0m21:20:05.677053 [info ] [MainThread]:   host: None
+[0m21:20:05.695606 [info ] [MainThread]:   port: None
+[0m21:20:05.720993 [info ] [MainThread]:   proxy_host: None
+[0m21:20:05.726851 [info ] [MainThread]:   proxy_port: None
+[0m21:20:05.729782 [info ] [MainThread]:   protocol: None
+[0m21:20:05.742477 [info ] [MainThread]:   connect_retries: 1
+[0m21:20:05.745938 [info ] [MainThread]:   connect_timeout: None
+[0m21:20:05.756671 [info ] [MainThread]:   retry_on_database_errors: False
+[0m21:20:05.763510 [info ] [MainThread]:   retry_all: False
+[0m21:20:05.772294 [info ] [MainThread]:   insecure_mode: False
+[0m21:20:05.787920 [info ] [MainThread]:   reuse_connections: True
+[0m21:20:05.789874 [info ] [MainThread]:   s3_stage_vpce_dns_name: None
+[0m21:20:05.819776 [info ] [MainThread]:   workload_identity_provider: None
+[0m21:20:05.857860 [info ] [MainThread]:   workload_identity_entra_resource: None
+[0m21:20:05.886177 [info ] [MainThread]:   platform_detection_timeout_seconds: 0.0
+[0m21:20:05.897894 [info ] [MainThread]: Registered adapter: snowflake=1.12.1
+[0m21:20:08.862810 [debug] [MainThread]: Acquiring new snowflake connection 'debug'
+[0m21:20:08.873103 [debug] [MainThread]: Using snowflake connection "debug"
+[0m21:20:08.875054 [debug] [MainThread]: On debug: select 1 as id
+[0m21:20:08.876544 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m21:20:11.228619 [debug] [MainThread]: SQL status: SUCCESS 1 in 2.353 seconds
+[0m21:20:11.232526 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m21:20:11.239365 [info ] [MainThread]: [32mAll checks passed![0m
+[0m21:20:11.243267 [info ] [MainThread]: Your new dbt project "ecommerce_dbt" was created!
+Initialized new project in C:\Users\Snapnet User\DataEngProjSelf\ecommerce\ecommerce_dbt\ecommerce_dbt
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m21:20:11.262802 [debug] [MainThread]: Command `dbt init` succeeded at 21:20:11.260845 after 617.39 seconds
+[0m21:20:11.272563 [debug] [MainThread]: Connection 'debug' was left open.
+[0m21:20:11.279427 [debug] [MainThread]: On debug: Close
+[0m21:20:11.621510 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001BD9AD04880>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001BD9ADDD0C0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001BDA6AA94E0>]}
+[0m21:20:11.624447 [debug] [MainThread]: Flushing usage events
+[0m21:20:14.271838 [debug] [MainThread]: An error was encountered while trying to flush usage events
