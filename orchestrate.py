@@ -7,29 +7,23 @@ import sys
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DBT_DIR = os.path.join(BASE_DIR, "ecommerce_dbt")
 
-# Explicitly add common Codespace bin directories to PATH
-def get_env():
-    env = os.environ.copy()
-    env["PATH"] = env.get("PATH", "") + ":/home/codespace/.local/bin:/opt/conda/bin:/usr/local/python/3.14.2/bin"
-    return env
-
 @task
 def run_python_ingestion():
     """Task 1: Runs the Python script to ingest data."""
     print("Running Python ingestion...")
-    subprocess.run([sys.executable, "ingest_api.py"], check=True, cwd=BASE_DIR, env=get_env())
+    subprocess.run([sys.executable, "ingest_api.py"], check=True, cwd=BASE_DIR, env=os.environ.copy())
 
 @task
 def run_dbt_transformations():
     """Task 2: Runs dbt models to transform data."""
     print("Running dbt transformations...")
-    subprocess.run(["dbt", "run"], check=True, cwd=DBT_DIR, env=get_env())
+    subprocess.run([sys.executable, "-m", "dbt.cli.main", "run"], check=True, cwd=DBT_DIR, env=os.environ.copy())
 
 @task
 def run_dbt_tests():
     """Task 3: Runs dbt tests to ensure data quality."""
     print("Running dbt tests...")
-    subprocess.run(["dbt", "test"], check=True, cwd=DBT_DIR, env=get_env())
+    subprocess.run([sys.executable, "-m", "dbt.cli.main", "test"], check=True, cwd=DBT_DIR, env=os.environ.copy())
 
 # Define the Flow
 @flow(name="ecommerce_daily_pipeline")
