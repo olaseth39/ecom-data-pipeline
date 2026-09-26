@@ -13,6 +13,7 @@ load_dotenv()
 
 def fetch_products(url):
     print("Fetching data from API...")
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Data-Engineering-Pipeline/1.0"}
     response = requests.get(url)
     response.raise_for_status()
     return response.json()
