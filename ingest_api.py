@@ -9,7 +9,8 @@ import snowflake.connector
 from snowflake.connector.pandas_tools import write_pandas
 
 # Load environment variables
-load_dotenv()
+#load_dotenv()
+load_dotenv("/workspaces/ecom-data-pipeline/.env")
 
 def fetch_products(url):
     """Fetches product data from the FakeStore API."""
